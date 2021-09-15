@@ -23,6 +23,10 @@ export const GlobalStyle = createGlobalStyle`
           --webkit-font-smooth: antialiased;
       }
 
+      border-style,div,input,textarea,button {
+          font: 400 1rem "Roboto", sans-serif
+      }
+
       #root {
           max-width: 960px;
           margin: 0 auto;
