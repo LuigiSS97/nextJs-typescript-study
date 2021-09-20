@@ -11,11 +11,11 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
       @media (max-width: 1080px) {
-          font-size: 73.75%;
+          font-size: 0.85rem;
       }
       
       @media (max-width: 720px) {
-          font-size: 87.5%;
+          font-size: 0.75rem;
       }
 
       body {
