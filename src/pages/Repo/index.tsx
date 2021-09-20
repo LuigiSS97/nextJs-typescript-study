@@ -1,5 +1,15 @@
 import React from "react";
+import { useParams } from "react-router";
+
+type repositoryParam = {
+  repository: string
+}
 
 export const Repo: React.FC = () => {
-  return <div>Repositorios</div>;
+  const {repository} = useParams<repositoryParam>()
+
+
+  return (
+  <div>Repositorio: </div>
+  );
 };
