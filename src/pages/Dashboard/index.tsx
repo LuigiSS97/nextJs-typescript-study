@@ -56,14 +56,14 @@ export const Dashboard: React.FC = () => {
         return;
       }
       const { data } = await api.get<GithubRepository>(`repos/${newRepo}`);
+      setNewRepo("")
+      setError("")
       setRepos((prev) => [...prev, data]);
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      setError("Repositório não encontrado");
     }
   }
 
-  console.log(newRepo);
 
   return (
     <Container>
