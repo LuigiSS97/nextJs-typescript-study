@@ -49,7 +49,7 @@ interface GitHubIssue {
   };
 }
 
-export const Repo: React.FC = () => {
+const Repo: React.FC = () => {
   const [repository, setRepository] = useState<GithubRepository | null>(null);
   const [issues, setIssues] = useState<GitHubIssue[]>([]);
   const { repositoryId } = useParams<repositoryParam>();
@@ -77,7 +77,10 @@ export const Repo: React.FC = () => {
       {repository && (
         <Body>
           <ContentWrapper>
-            <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+            <img
+              src={repository.owner.avatar_url}
+              alt={repository.owner.login}
+            />
             <ContentHeader>
               <ContentTitle>{repository.full_name}</ContentTitle>
               <ContentSubTitle>{repository.description}</ContentSubTitle>
@@ -98,18 +101,17 @@ export const Repo: React.FC = () => {
             </ContentListItem>
           </ContentList>
           <Issues>
-            {issues.map(item => (
-            <IssueLink href={item.html_url} key={item.id}>
-              <IssueWrapper>
-                <IssuesTitle>{item.title}</IssuesTitle>
-                <IssuesContent>{item.user.login}</IssuesContent>
-              </IssueWrapper>
+            {issues.map((item) => (
+              <IssueLink href={item.html_url} key={item.id}>
+                <IssueWrapper>
+                  <IssuesTitle>{item.title}</IssuesTitle>
+                  <IssuesContent>{item.user.login}</IssuesContent>
+                </IssueWrapper>
 
-              <IconWrapper>
-                <FiChevronRight size="20px" />
-              </IconWrapper>
-            </IssueLink>
-
+                <IconWrapper>
+                  <FiChevronRight size="20px" />
+                </IconWrapper>
+              </IssueLink>
             ))}
           </Issues>
         </Body>
@@ -117,3 +119,4 @@ export const Repo: React.FC = () => {
     </>
   );
 };
+export default Repo;

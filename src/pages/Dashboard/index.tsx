@@ -23,7 +23,7 @@ interface GithubRepository {
   owner: Owner;
 }
 
-export const Dashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
   const [repos, setRepos] = useState<GithubRepository[]>(() => {
     const storageRepos = localStorage.getItem("@GitCollection:repositories");
     if (storageRepos) {
@@ -56,14 +56,13 @@ export const Dashboard: React.FC = () => {
         return;
       }
       const { data } = await api.get<GithubRepository>(`repos/${newRepo}`);
-      setNewRepo("")
-      setError("")
+      setNewRepo("");
+      setError("");
       setRepos((prev) => [...prev, data]);
     } catch (error) {
       setError("Repositório não encontrado");
     }
   }
-
 
   return (
     <Container>
@@ -79,11 +78,11 @@ export const Dashboard: React.FC = () => {
       </Form>
       {error && <Error>{error}</Error>}
       <RepoList>
-        {repos.map((repository) => (
+        {repos.map((repository, index) => (
           <Link
             style={{ textDecoration: "none" }}
             to={`/repositorios/${repository.full_name}`}
-            key={repository.full_name}
+            key={repository.full_name + index}
           >
             <LinkCard>
               <ProfileImage
@@ -102,3 +101,4 @@ export const Dashboard: React.FC = () => {
     </Container>
   );
 };
+export default Dashboard;
