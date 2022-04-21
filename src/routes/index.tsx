@@ -11,7 +11,7 @@ export const Routes: React.FC = () => {
     <Suspense fallback={<p>loading ...</p>}>
       <Switch>
         <Route component={Dashboard} path="/" exact />
-        <Route component={Repo} path="/repositorios/:repositoryId+" exact />
+        <Route component={Repo} path="/tubirnas" exact />
       </Switch>
     </Suspense>
   );
