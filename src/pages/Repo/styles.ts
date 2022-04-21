@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface opacityProp {
+  opacity: number;
+}
+
 export const Container = styled.div``;
 
 export const Header = styled.div`
@@ -24,103 +28,68 @@ export const Header = styled.div`
   }
 `;
 
-export const Body = styled.div`
+export const Body = styled.body`
   margin-top: 80px;
 `;
 
-export const ContentWrapper = styled.div`
-  display: flex;
-  align-items: center;
 
-  img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-  }
+
+export const Logo = styled.img`
+  width: 80vw;
+  max-width: 500px;
 `;
 
-export const ContentHeader = styled.div`
-  margin-left: 84px;
-`;
+export const Input = styled.input`
+  width: 100%;
+`
 
-export const ContentTitle = styled.div`
-  font-size: 36px;
-  color: #3d3d4d;
-  font-weight: bold;
-`;
-
-export const ContentSubTitle = styled.div`
-  font-size: 18px;
-  color: #737380;
-`;
-
-export const ContentList = styled.ul`
-  display: flex;
-  list-style: none;
-  margin-top: 40px;
-`;
-
-export const ContentListItem = styled.li`
-  & + li {
-    margin-left: 80px;
-  }
-`;
-
-export const ListTitle = styled.strong`
-  display: block;
-  font-size: 36px;
-  color: #3d3d4d;
-`;
-
-export const ListContent = styled.span`
-  display: block;
-  margin-top: 4px;
-  color: #737380;
-`;
-
-export const Issues = styled.section`
-margin-top: 80px;
-
-`;
-
-export const IssueLink = styled.a`
-background: white;
-border-radius: 5px;
+export const Subtitle = styled.p<opacityProp>`
+font-size: 10em;
 width: 100%;
-padding: 24px;
-display: flex;
-text-decoration: none;
-align-items: center;
-transition: transform 0.2s;
+color: gray;
+font-weight: bold;
+opacity: ${({opacity}) => opacity};
+background: #E6E7E1;
+`
 
-&:hover{
-  transform: translateX(6px);
+export const And = styled.p<opacityProp>`
+font-size: 3em;
+width: 100%;
+color: gray;
+font-weight: bold;
+opacity: ${({opacity}) => opacity};
+background: #E6E7E1;
+text-align: center;
+`
+export const Instruction = styled.p`
+font-size: 2em;
+width: 100%;
+color: gray;
+font-weight: bold;
+text-align: center;
+`
+export const Direct = styled.button`
+background-color: #00909C;
+color: white;
+border-color: transparent;
+font-weight: 600;
+padding: 10px 20px;
+border-radius: 5px;
+max-width: 27em;
+width: 100%;
+text-decoration:none;
+font-size: 1.2em;
+margin-top: 20px;
+
+&:hover,
+&:active {
+  background-color: #004976;
 }
-
-& + a {
-  margin-top: 16px;
+`
+export const Pic = styled.img`
+object-fit: contain;
+width: 91vw;
+max-width: 500px;
+margin-top: 20px;
 }
-
-`;
-
-export const IssuesTitle = styled.strong`
-font-size: 20px;
-color: #3d3d4d;
-`;
-
-export const IssueWrapper = styled.div`
-margin-top: 0 16px;
-flex: 1;
-`;
-
-export const IconWrapper = styled.div`
-svg{
-  margin-left: auto;
-  color: #cbcbd6;
-}
-`;
-
-export const IssuesContent = styled.p`
-font-size: 18px;
-color: #a8a8b3;
-`;
+`

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.png";
 import { FiChevronRight } from "react-icons/fi";
 import { api } from "../../services/api";
 import {
@@ -9,9 +9,12 @@ import {
   RepoList,
   Error,
   LinkCard,
-  ProfileImage,
+  SliderWrapper,
+  Logo,
+  Direct,
 } from "./styles";
 import { Link } from "react-router-dom";
+import Carousel from "../../components/swiper";
 
 type Owner = {
   login: string;
@@ -32,6 +35,8 @@ const Dashboard: React.FC = () => {
     return [];
   });
   const [newRepo, setNewRepo] = useState("");
+  const [lastIndex, setLastIndex] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
@@ -66,38 +71,16 @@ const Dashboard: React.FC = () => {
 
   return (
     <Container>
-      <img src={logo} alt="GitColection" />
-      <Title>DashBoard </Title>
-      <Form hasError={Boolean(error)} onSubmit={handleSearchRepo}>
-        <input
-          placeholder="username/repository_name"
-          onChange={(event) => handleOnChange(event)}
-          value={newRepo}
-        />
-        <button type="submit">Buscar</button>
-      </Form>
-      {error && <Error>{error}</Error>}
-      <RepoList>
-        {repos.map((repository, index) => (
-          <Link
-            style={{ textDecoration: "none" }}
-            to={`/repositorios/${repository.full_name}`}
-            key={repository.full_name + index}
-          >
-            <LinkCard>
-              <ProfileImage
-                src={repository.owner.avatar_url}
-                alt={repository.owner.login}
-              />
-              <div>
-                <strong>{repository.full_name}</strong>
-                <p>{repository.description}</p>
-              </div>
-              <FiChevronRight size="20px" />
-            </LinkCard>
-          </Link>
-        ))}
-      </RepoList>
+      <Logo src={logo} alt="GitColection" />
+      <Title>Deslize para ver mais</Title>
+      <SliderWrapper>
+        <Carousel lastIndex={setLastIndex} setCurrentIndex={setCurrentIndex} />
+      </SliderWrapper>
+      {currentIndex === lastIndex && (
+        <a href="/tubirnas">
+          <Direct>Quer saber porque das fotos?</Direct>
+        </a>
+      )}
     </Container>
   );
 };
